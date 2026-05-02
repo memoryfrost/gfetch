@@ -6,3 +6,11 @@
 ### Supported distros
 
 - Arch Linux
+- CachyOS
+- Void Linux
+- Ubuntu
+- Linux Mint
+- Debian
+- Fedora Linux
+- NixOS
+- Gentoo Linux

@@ -12,6 +12,18 @@ import (
 	"github.com/shirou/gopsutil/v4/mem"
 )
 
+var distros map[string]string = map[string]string{
+	"arch":      "Arch Linux",
+	"cachyos":   "CachyOS",
+	"void":      "Void Linux",
+	"ubuntu":    "Ubuntu",
+	"linuxmint": "Linux Mint",
+	"debian":    "Debian",
+	"fedora":    "Fedora Linux",
+	"nixos":     "NixOS",
+	"gentoo":    "Gentoo Linux",
+}
+
 func main() {
 	ram, _ := mem.VirtualMemory()
 	cpu, _ := cpu.Info()
@@ -20,9 +32,9 @@ func main() {
 	username, _ := user.Current()
 	hostinfo, _ := host.Info()
 	var distro string
-	switch hostinfo.Platform {
-	case "arch":
-		distro = "Arch Linux"
+	distro, ok := distros[hostinfo.Platform]
+	if ok == false {
+		distro = hostinfo.Platform
 	}
 	fmt.Println(`    .--.
    |o_o |
