@@ -12,7 +12,7 @@ import (
 	"github.com/shirou/gopsutil/v4/mem"
 )
 
-var distros map[string]string = map[string]string{
+var systems map[string]string = map[string]string{
 	"arch":      "Arch Linux",
 	"cachyos":   "CachyOS",
 	"void":      "Void Linux",
@@ -32,24 +32,34 @@ func main() {
 	hostname, _ := os.Hostname()
 	username, _ := user.Current()
 	hostinfo, _ := host.Info()
-	var distro string
-	distro, ok := distros[hostinfo.Platform]
+	var system string
+	system, ok := systems[hostinfo.Platform]
 	if ok == false {
-		distro = hostinfo.Platform
+		system = hostinfo.Platform
 	}
-	fmt.Println(`    .--.
-   |o_o |
-   |:_/ |
-  //   \ \
- (|     | )
-/'\\_   _/'\
-\___)=(___/`)
+	if system == "darwin" {
+		fmt.Println("          .:'\n" +
+			"      __ :'__\n" +
+			"   .'`__`-'__``.\n" +
+			"  :__________.-'\n" +
+			"  :_________:\n" +
+			"   :_________`-;\n" +
+			"    `.__.-.__.'")
+	} else {
+		fmt.Println("    .--.\n" +
+			"   |o_o |\n" +
+			"   |:_/ |\n" +
+			"  //   \\ \\\n" +
+			" (|     | )\n" +
+			"/'\\_   _/`\\\n" +
+			"\\___)=(___/")
+	}
 	fmt.Println("---------------")
 	fmt.Printf("%s@%s\n", username.Username, hostname)
-	fmt.Println("OS:", distro, hostinfo.KernelArch)
+	fmt.Println("OS:", system, hostinfo.KernelArch)
 	fmt.Println("Kernel:", hostinfo.KernelVersion)
 	fmt.Println("CPU:", cpu[0].ModelName)
-	if distro != "MacOS" {
+	if system != "MacOS" {
 		for _, card := range gpu.GraphicsCards {
 			fmt.Println("GPU:", card.DeviceInfo.Product.Name)
 		}

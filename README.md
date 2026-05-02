@@ -3,7 +3,7 @@
 ### Minimal system info fetch written in Go
 ### Made for the purpose of studying Go
 
-### Supported distros
+### Supported:
 
 - Arch Linux
 - CachyOS
@@ -14,3 +14,5 @@
 - Fedora Linux
 - NixOS
 - Gentoo Linux
+- --
+- MacOS (Doesnt display GPU)
