@@ -37,7 +37,7 @@ func main() {
 	if ok == false {
 		system = hostinfo.Platform
 	}
-	if system == "darwin" {
+	if system == "MacOS" {
 		fmt.Println("          .:'\n" +
 			"      __ :'__\n" +
 			"   .'`__`-'__``.\n" +
