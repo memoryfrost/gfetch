@@ -1,4 +1,4 @@
-module gfetch
+module github.com/xelframe/gfetch
 
 go 1.26.2
 
