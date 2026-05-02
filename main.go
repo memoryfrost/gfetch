@@ -22,6 +22,7 @@ var distros map[string]string = map[string]string{
 	"fedora":    "Fedora Linux",
 	"nixos":     "NixOS",
 	"gentoo":    "Gentoo Linux",
+	"darwin":    "MacOS",
 }
 
 func main() {
@@ -48,8 +49,12 @@ func main() {
 	fmt.Println("OS:", distro, hostinfo.KernelArch)
 	fmt.Println("Kernel:", hostinfo.KernelVersion)
 	fmt.Println("CPU:", cpu[0].ModelName)
-	for _, card := range gpu.GraphicsCards {
-		fmt.Println("GPU:", card.DeviceInfo.Product.Name)
+	if distro != "MacOS" {
+		for _, card := range gpu.GraphicsCards {
+			fmt.Println("GPU:", card.DeviceInfo.Product.Name)
+		}
+	} else {
+		fmt.Println("GPU: Not supported on MacOS")
 	}
 	fmt.Println("RAM:", ram.Used/1024/1024, "MiB /", ram.Total/1024/1024, "MiB")
 }
