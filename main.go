@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/user"
+	"runtime"
 
 	"github.com/jaypipes/ghw"
 
@@ -22,6 +23,7 @@ var systems map[string]string = map[string]string{
 	"fedora":    "Fedora Linux",
 	"nixos":     "NixOS",
 	"gentoo":    "Gentoo Linux",
+	"alpine":    "Alpine Linux",
 	"darwin":    "MacOS",
 }
 
@@ -37,7 +39,9 @@ func main() {
 	if ok == false {
 		system = hostinfo.Platform
 	}
-	if system == "MacOS" {
+
+	switch runtime.GOOS {
+	case "darwin":
 		fmt.Println("        .:'\n" +
 			"    __ :'__\n" +
 			" .'`__`-'__``.\n" +
@@ -45,7 +49,13 @@ func main() {
 			":_________:\n" +
 			" :_________`-;\n" +
 			"  `.__.-.__.'")
-	} else {
+	case "windows":
+		fmt.Println("       _.-;;-._\n" +
+			"'-..-'|   ||   |\n" +
+			"'-..-'|_.-;;-._|\n" +
+			"'-..-'|   ||   |\n" +
+			"'-..-'|_.-''-._|")
+	case "linux":
 		fmt.Println("    .--.\n" +
 			"   |o_o |\n" +
 			"   |:_/ |\n" +
@@ -53,18 +63,23 @@ func main() {
 			" (|     | )\n" +
 			"/'\\_   _/`\\\n" +
 			"\\___)=(___/")
+	default:
+		fmt.Println("Unknown system")
 	}
 	fmt.Println("---------------")
 	fmt.Printf("%s@%s\n", username.Username, hostname)
 	fmt.Println("OS:", system, hostinfo.KernelArch)
 	fmt.Println("Kernel:", hostinfo.KernelVersion)
 	fmt.Println("CPU:", cpu[0].ModelName)
-	if system != "MacOS" {
+	switch runtime.GOOS {
+	case "windows", "linux":
 		for _, card := range gpu.GraphicsCards {
 			fmt.Println("GPU:", card.DeviceInfo.Product.Name)
 		}
-	} else {
+	case "darwin":
 		fmt.Println("GPU: Not supported on MacOS")
+	default:
+		fmt.Println("GPU: Not supported on " + runtime.GOOS)
 	}
 	fmt.Println("RAM:", ram.Used/1024/1024, "MiB /", ram.Total/1024/1024, "MiB")
 }

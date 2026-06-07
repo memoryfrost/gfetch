@@ -4,7 +4,7 @@ go 1.26.2
 
 require (
 	github.com/jaypipes/ghw v0.24.0
-	github.com/shirou/gopsutil/v4 v4.26.4
+	github.com/shirou/gopsutil/v4 v4.26.5
 )
 
 require (

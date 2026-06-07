@@ -14,5 +14,8 @@
 - Fedora Linux
 - NixOS
 - Gentoo Linux
+- Alpine Linux
+- --
+- Windows
 - --
 - MacOS (Doesnt display GPU)
