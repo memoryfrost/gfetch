@@ -1,4 +1,5 @@
 .zed
+*.DS_Store
 gfetch
 src
 PKGBUILD

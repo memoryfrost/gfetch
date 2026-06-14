@@ -1,6 +1,8 @@
 # gfetch
 
 ### Minimal system info fetch written in Go
+<img src="screenshot.png" width="500">
+
 ### Made for the purpose of studying Go
 
 ### Supported:
@@ -18,4 +20,4 @@
 - --
 - Windows
 - --
-- MacOS (Doesnt display GPU)
+- MacOS (Shows only one GPU)

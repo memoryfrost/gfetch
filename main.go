@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"os/user"
 	"runtime"
+	"strings"
 
 	"github.com/jaypipes/ghw"
 
@@ -77,7 +79,10 @@ func main() {
 			fmt.Println("GPU:", card.DeviceInfo.Product.Name)
 		}
 	case "darwin":
-		fmt.Println("GPU: Not supported on MacOS")
+		gpudarwin := exec.Command("sh", "-c", "system_profiler SPDisplaysDataType | grep 'Chipset Model:'")
+		gpudarwinout, _ := gpudarwin.Output()
+		gpudarwinparts := strings.Split(string(gpudarwinout), ":")
+		fmt.Print("GPU:" + gpudarwinparts[1])
 	default:
 		fmt.Println("GPU: Not supported on " + runtime.GOOS)
 	}
