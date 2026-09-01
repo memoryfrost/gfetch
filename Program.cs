@@ -25,7 +25,7 @@ switch (platform)
 Console.WriteLine("---------------");
 Console.WriteLine($"{Environment.UserName}@{Environment.MachineName}");
 Console.WriteLine($"OS: {Environment.OSVersion}");
-//Console.WriteLine($"Kernel: ");
+Console.WriteLine($"Kernel: {Environment.OSVersion.Version} ");
 switch (platform)
 {
     case PlatformID.Win32NT:
