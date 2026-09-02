@@ -7,3 +7,4 @@
 ### Supported:
 
 - Windows
+- Linux
